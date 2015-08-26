@@ -1,0 +1,22 @@
+{
+  "name": "wedding",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Ryan Sobol",
+  "contributors": [
+    "Jane Fung"
+  ],
+  "scripts": {
+    "start": "brunch watch --server",
+    "deploy": "brunch build --production; surge public janeandryanwedding.com"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-brunch": "^5.1.2",
+    "brunch": "^1.8.5",
+    "clean-css-brunch": "^1.7.2",
+    "sass-brunch": "^1.9.0",
+    "surge": "^0.16.0"
+  },
+  "private": true
+}

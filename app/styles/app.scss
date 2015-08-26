@@ -1,0 +1,289 @@
+@import 'normalize';
+
+$bodyColor: #454545;
+
+@keyframes boomSmall {
+    0% { transform: scale(1); }
+   25% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+@keyframes boomBig {
+    0% { transform: scale(1); }
+   25% { transform: scale(1.14); }
+  100% { transform: scale(1); }
+}
+
+@mixin knot {
+  background-image: url('knot.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: 100px 100px;
+  padding-top: 100px;
+}
+
+@function vw($width) {
+  @return $width / 1440 * 100vw;
+}
+
+html {
+  box-sizing: border-box;
+  color: $bodyColor;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding-bottom: vw(100);
+}
+
+h1, h2, h3 {
+  font-family: 'Great Vibes', cursive;
+  font-weight: 400;
+  margin: 0;
+  text-align: center;
+}
+
+#hero {
+  background-image: url('water.jpg');
+  background-position: 5% 0%;
+  background-repeat: repeat-x;
+  background-size: 3166px 149px;
+  padding-top: vw(100);
+
+  h1 {
+    font-size: vw(150);
+  }
+
+  h2 {
+    font-size: vw(80);
+    margin-top: vw(20);
+  }
+}
+
+#emp, #labyrinth, #bouquet {
+  $width: 950;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: 10px solid #FFFFFF;
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15);
+  height: vw($width / 1.64);
+  margin: vw(100) auto 0 auto;
+  width: vw($width)
+}
+
+#emp {
+  background-image: url('emp.jpg');
+}
+
+#labyrinth {
+  background-image: url('labyrinth.jpg');
+}
+
+#bouquet {
+  background-image: url('bouquet.jpg');
+}
+
+#story, #proposal, #wedding, #rsvp {
+  margin-top: vw(68);
+
+  h3 {
+    font-size: vw(75);
+  }
+
+  p {
+    font-family: 'Lora', serif;
+    font-size: 21px;
+    line-height: 1.6;
+    margin: 0 auto;
+    margin-top: vw(30);
+    text-indent: 1em;
+    width: 65%;
+  }
+}
+
+#rsvp {
+  $checkedColor: #F8D4E2;
+  $duration: 0.2s;
+  $gutter: vw(40);
+
+  font-family: 'Lora', serif;
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 1.6;
+
+  box-shadow: 0 1px 5px 1px rgba(0, 0, 0, 0.15);
+  margin-left: auto;
+  margin-right: auto;
+  padding: $gutter 0;
+  width: 55%;
+
+  h3 {
+    letter-spacing: 2px;
+  }
+
+  p {
+    margin-top: 0;
+    text-align: center;
+    text-indent: 0;
+    width: 100%;
+  }
+
+  label {
+    cursor: pointer;
+    display: block;
+    font-size: 20px;
+    line-height: 32px;
+    margin: vw(10);
+    margin-bottom: 0;
+    vertical-align: middle;
+  }
+
+  section {
+    margin: 0 auto;
+    width: 75%;
+  }
+
+  h4 {
+    font-size: 20px;
+    margin: $gutter auto 0 auto;
+  }
+
+  h6 {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 auto vw(10) auto;
+  }
+
+  .checkbox, textarea {
+    border: 1px solid lighten($bodyColor, 35%);
+    border-radius: 3px;
+    outline: none;
+  }
+
+  label:hover > .checkbox, textarea:hover {
+    background-color: lighten($bodyColor, 71%);
+  }
+
+  .checkbox:focus, textarea:focus {
+    animation: boomSmall $duration;
+    background-color: white;
+    border: 1px solid darken($checkedColor, 7%);
+    outline: none;
+  }
+
+  textarea {
+    line-height: 1.6;
+    margin-top: $gutter;
+    padding: 2px 8px;
+    width: 100%;
+
+    &::-webkit-input-placeholder {
+      color: lighten($bodyColor, 55%);
+    }
+
+    &::-moz-placeholder {
+      color: lighten($bodyColor, 55%);
+      opacity: 1;
+    }
+
+    &:-ms-input-placeholder {
+      color: lighten($bodyColor, 55%);
+    }
+  }
+
+  input[type='checkbox'] {
+    display: none;
+  }
+
+  .checkbox {
+    $size: 32px;
+
+    background-color: white;
+    color: lighten($bodyColor, 62%);
+    cursor: pointer;
+    display: inline-block;
+    font-size: $size / 1.5;
+    height: $size;
+    line-height: $size;
+    margin-right: vw(10);
+    text-align: center;
+    width: $size;
+    vertical-align: top;
+
+    &:focus {
+      animation: boomBig $duration;
+    }
+  }
+
+  input[type='checkbox']:checked + .checkbox{
+    animation: boomBig $duration;
+    background-color: $checkedColor;
+    border-color: $checkedColor;
+    color: $bodyColor;
+  }
+
+  .message {
+    margin-bottom: $gutter;
+  }
+
+  button {
+    $topColor: $checkedColor;
+    $bottomColor: darken($topColor, 4%);
+    $size: 25px;
+
+    background-color: $topColor;
+    background-image: -webkit-linear-gradient(top, $topColor, $bottomColor);
+    background-image: linear-gradient(to bottom, $topColor, $bottomColor);
+    border: 1px solid $topColor;
+    border-radius: 3px;
+    color: $bodyColor;
+    font-size: $size;
+
+    line-height: $size * 2;
+    outline: none;
+    transition-duration: 0.2s;
+    width: 100%;
+
+    & .fa {
+      margin-right: 10px;
+    }
+
+    &:hover {
+      $topColor: darken($checkedColor, 3%);
+      $bottomColor: darken($topColor, 4%);
+
+      background-color: $topColor;
+      background-image: -webkit-linear-gradient(top, $topColor, $bottomColor);
+      background-image: linear-gradient(to bottom, $topColor, $bottomColor);
+    }
+
+    &:focus {
+      animation: boomSmall $duration;
+      border: 1px solid darken($topColor, 7%);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &.invalid {
+        $topColor: lighten($bodyColor, 63%);
+        $bottomColor: darken($topColor, 4%);
+
+        background-color: $topColor;
+        background-image: -webkit-linear-gradient(top, $topColor, $bottomColor);
+        background-image: linear-gradient(to bottom, $topColor, $bottomColor);
+        border: 1px solid $topColor;
+        color: lighten($bodyColor, 35%);
+      }
+    }
+  }
+}
+
+@import 'medium';
+@import 'small';
+@import 'tiny';

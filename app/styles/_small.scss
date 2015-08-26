@@ -1,0 +1,24 @@
+@media (max-width: 568px) {
+  #rsvp {
+    $gutter: vw(60);
+
+    padding: $gutter 0;
+    width: 85%;
+
+    section {
+      width: 75%;
+    }
+
+    h4 {
+      margin-top: $gutter;
+    }
+
+    textarea {
+      margin-top: $gutter;
+    }
+
+    .message {
+      margin-bottom: $gutter;
+    }
+  }
+}
