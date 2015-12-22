@@ -8,45 +8,68 @@ var Replies = React.createClass({
       'https://janeandryanwedding.firebaseio.com/replies'
     );
 
-    this.firebaseRef.on('child_added', function(dataSnapshot) {
-      var replies = this.state.replies;
+    this.firebaseRef.on('child_added', this.onChildAdded);
 
-      replies.push(dataSnapshot.val());
-
-      this.setState({ replies: replies });
-    }.bind(this));
+    this.kauaiReplies = [];
+    this.weddingReplies = [];
   },
 
   componentWillUnmount: function() {
     this.firebaseRef.off();
   },
 
-  render: function() {
-    var replies = this.state.replies.map(function(reply, key) {
-      return (
-        <tr key={key}>
-          <td>{reply.partyMembers}</td>
-          <td>{reply.weddingIntention}</td>
-          <td>{reply.mauiIntention}</td>
-          <td>{reply.kauaiIntention}</td>
-          <td>{reply.message}</td>
-        </tr>
-      );
+  onChildAdded: function(dataSnapshot) {
+    var replies = this.state.replies;
+
+    replies.push(dataSnapshot.val());
+
+    this.kauaiReplies = this.state.replies.filter(function(reply) {
+      return reply.kauaiIntention === 'interested';
     });
 
-    return (
+    this.weddingReplies = this.state.replies.filter(function(reply) {
+      return reply.weddingIntention === 'accept';
+    });
+
+    this.setState({ replies: replies });
+  },
+
+  render: function() {
+    var weddingReplies = this.weddingReplies.map(function(reply, key) {
+      return <tr key={key}>
+        <td>{reply.partyMembers}</td>
+        <td>{reply.weddingIntention}</td>
+        <td>{reply.mauiIntention}</td>
+      </tr>;
+    });
+
+    var kauaiReplies = this.kauaiReplies.map(function(reply, key) {
+      return <tr key={key}>
+        <td>{reply.partyMembers}</td>
+      </tr>;
+    });
+
+    return <div>
+      <h3>Wedding Replies ({weddingReplies.length})</h3>
       <table>
         <tr>
-          <th>Party Members</th>
+          <th>Name</th>
           <th>Wedding Intention</th>
           <th>Maui Intention</th>
-          <th>Kauai Intention</th>
-          <th>Message</th>
         </tr>
 
-        {replies}
+        {weddingReplies}
       </table>
-    );
+
+      <h3>Kauai Replies ({kauaiReplies.length})</h3>
+      <table>
+        <tr>
+          <th>Name</th>
+        </tr>
+
+        {kauaiReplies}
+      </table>
+    </div>;
   }
 });
 
