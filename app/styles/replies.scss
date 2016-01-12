@@ -1,0 +1,55 @@
+@import 'normalize';
+@import 'shared';
+
+$bodyColor: #454545;
+
+html {
+  box-sizing: border-box;
+  color: $bodyColor;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  padding-bottom: vw(50);
+}
+
+#replies {
+  h3 {
+    font-family: 'Lora', serif;
+    font-size: 25px;
+    line-height: 1.6;
+    margin: vw(50) auto 0 auto;
+    width: 65%;
+  }
+
+  table {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    margin: 0 auto;
+    width: 65%;
+  }
+
+  td, th {
+    padding: 10px;
+  }
+
+  th {
+    font-weight: 600;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .row0 {
+    background-color: darken(#fff, 4%);
+  }
+
+  .row1 {
+    background-color: #fff;
+  }
+}

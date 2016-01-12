@@ -1,4 +1,5 @@
 @import 'normalize';
+@import 'shared';
 
 $bodyColor: #454545;
 
@@ -20,10 +21,6 @@ $bodyColor: #454545;
   background-repeat: no-repeat;
   background-size: 100px 100px;
   padding-top: 100px;
-}
-
-@function vw($width) {
-  @return $width / 1440 * 100vw;
 }
 
 html {

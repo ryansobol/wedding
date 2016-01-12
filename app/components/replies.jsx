@@ -36,15 +36,15 @@ var Replies = React.createClass({
 
   render: function() {
     var weddingReplies = this.weddingReplies.map(function(reply, key) {
-      return <tr key={key}>
+      return <tr className={'row' + key % 2} key={key}>
         <td>{reply.partyMembers}</td>
-        <td>{reply.weddingIntention}</td>
-        <td>{reply.mauiIntention}</td>
+        <td className="center">{reply.weddingIntention}</td>
+        <td className="center">{reply.mauiIntention}</td>
       </tr>;
     });
 
     var kauaiReplies = this.kauaiReplies.map(function(reply, key) {
-      return <tr key={key}>
+      return <tr className={'row' + key % 2} key={key}>
         <td>{reply.partyMembers}</td>
       </tr>;
     });

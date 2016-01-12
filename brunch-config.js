@@ -5,7 +5,10 @@ module.exports.config = {
     },
 
     stylesheets: {
-      joinTo: 'app.css'
+      joinTo: {
+        'index.css': /^app\/styles\/index/,
+        'replies.css': /^app\/styles\/replies/
+      }
     }
   },
 
